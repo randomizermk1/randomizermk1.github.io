@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>한국항공출판</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E2340">
+<title>한국항공출판 — 준비중</title>
+<meta name="description" content="한국항공출판 웹사이트는 준비 중입니다. 미리보기 PDF는 준비되는 대로 올립니다.">
+
+<!-- KoPubWorld 웹폰트 (돋움 + 바탕 통합) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-kopubworld@1.0">
+
+<style>
+/* ───── 여기 값만 바꾸면 색과 글꼴이 전부 따라 바뀝니다 ───── */
+:root{
+  --bg:   #0E2340;                 /* 배경 남색 */
+  --fg:   #FFFFFF;                 /* 글자·선 색 */
+  --dim:  rgba(255,255,255,.62);   /* 흐린 글자 */
+  --line: rgba(255,255,255,.24);   /* 가는 구분선 */
+  --serif:'KoPubWorld Batang','KoPub Batang',serif;
+  --sans: 'KoPubWorld Dotum','KoPub Dotum',sans-serif;
+}
+/* ──────────────────────────────────────────────────────── */
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  padding:48px 24px;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--serif);
+  -webkit-font-smoothing:antialiased;
+  display:flex;                /* 이 세 줄이 화면 정중앙 배치 */
+  align-items:center;
+  justify-content:center;
+}
+
+main{
+  width:100%;
+  max-width:560px;
+  text-align:center;
+  animation:rise .9s ease-out both;
+}
+
+/* 상단 이름 */
+.wordmark{
+  margin:0 0 40px;
+  font-family:var(--serif);
+  font-size:15px;
+  letter-spacing:.35em;
+  text-indent:.35em;           /* 자간 때문에 중앙이 밀리는 것 보정 */
+  color:var(--dim);
+}
+
+/* 일러스트 — svg를 img로 바꿔도 이 크기가 그대로 적용됩니다 */
+.art{
+  display:block;
+  width:min(330px,72vw);
+  height:auto;
+  margin:0 auto 36px;
+  color:var(--fg);             /* SVG 안의 currentColor가 이 색을 따라갑니다 */
+  opacity:.9;
+}
+
+h1{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(64px,17vw,124px);
+  line-height:1;
+  letter-spacing:.08em;
+  text-indent:.08em;
+}
+
+.rule{
+  width:56px; height:1px;
+  margin:36px auto;
+  border:0;
+  background:var(--line);
+}
+
+.notice{
+  margin:0 auto;
+  max-width:30em;
+  font-size:15px;
+  font-weight:300;
+  line-height:2;
+  color:var(--dim);
+}
+
+.contact{ margin:28px 0 0; font-size:14px; }
+.contact a{
+  color:var(--fg);
+  text-decoration:none;
+  padding-bottom:2px;
+  border-bottom:1px solid var(--line);
+}
+.contact a:hover,
+.contact a:focus-visible{ border-bottom-color:var(--fg); }
+
+@keyframes rise{
+  from{ opacity:0; transform:translateY(10px); }
+  to  { opacity:1; transform:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  main{ animation:none; }
+}
+</style>
 </head>
+
 <body>
-  <h1>한국항공출판</h1>
-  <p>준비 중입니다.</p>
+<main>
+
+  <p class="wordmark">한국항공출판</p>
+
+  <!-- ▼▼ 여기부터 ▲▲ 표시까지가 일러스트. 통째로 교체하면 됩니다 ▼▼ -->
+ <img class="art" src="plane.svg" alt="조립 중인 비행기 일러스트">
+  <!-- ▲▲ 여기까지가 일러스트 ▲▲ -->
+
+  <h1>준비중</h1>
+
+  <hr class="rule">
+
+  <p class="notice">
+    항공 교범 번역서의 소개와 미리보기 PDF를 준비하고 있습니다.<br>
+    준비되는 대로 이곳에 올리겠습니다.
+  </p>
+
+  <p class="contact">
+    <a href="mailto:contact@koreaaviationpress.kr">contact@koreaaviationpress.kr</a>
+  </p>
+
+</main>
 </body>
 </html>
