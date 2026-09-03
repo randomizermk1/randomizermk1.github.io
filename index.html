@@ -27,13 +27,14 @@ html,body{ height:100%; }
 
 body{
   margin:0;
-  padding:48px 24px;
+  padding:64px 24px;
+  min-height:100vh;
   background:var(--bg);
   color:var(--fg);
   font-family:var(--sans);
   -webkit-font-smoothing:antialiased;
-  display:flex;                /* 이 세 줄이 화면 정중앙 배치 */
-  align-items:center;
+  display:flex;
+  align-items:flex-start;
   justify-content:center;
 }
 
@@ -112,7 +113,38 @@ h1{
 }
 .contact a:hover,
 .contact a:focus-visible{ border-bottom-color:var(--fg); }
+.books{
+  width:100%;
+  max-width:460px;
+  margin:44px auto 0;
+}
 
+.book{
+  margin:0 0 42px;
+}
+
+.book h2{
+  margin:0 0 8px;
+  font-size:20px;
+  font-weight:700;
+  line-height:1.4;
+}
+
+.original-title{
+  margin:0 0 14px;
+  font-size:12px;
+  font-weight:300;
+  color:rgba(255,255,255,.48);
+  letter-spacing:.02em;
+}
+
+.book p:not(.original-title){
+  margin:0;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.65;
+  color:rgba(255,255,255,.70);
+}
 @keyframes rise{
   from{ opacity:0; transform:translateY(10px); }
   to  { opacity:1; transform:none; }
@@ -132,11 +164,9 @@ h1{
  <img class="art" src="plane.svg" alt="조립 중인 비행기 일러스트">
   <!-- ▲▲ 여기까지가 일러스트 ▲▲ -->
 
-  <h1>준비중</h1>
-
   <hr class="rule">
 
-  <p class="notice1">
+  <p class="notice">
     항공 교범 번역서의 소개와 Google Books 전문 열람 링크를 준비하고 있습니다.<br>
     준비되는 대로 이곳에서 안내하겠습니다.
   </p>
