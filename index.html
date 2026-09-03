@@ -4,8 +4,91 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0E2340">
-<title>한국항공출판 — 준비중</title>
-<meta name="description" content="한국항공출판 발간 도서 및 Google Books 전문 열람 안내">
+
+<!-- ───── 검색 노출용 기본 정보 ───── -->
+<title>한국항공출판 — FAA 항공 교범 한국어판 (PHAK·AFH·AWH)</title>
+<meta name="description" content="미국 연방항공청(FAA) 항공 교범 3종의 한국어 번역판. 조종사를 위한 항공지식(PHAK), 항공기 비행 지침서(AFH), 항공 기상 지침서(AWH). 전문은 Google Books에서 열람하실 수 있습니다.">
+<link rel="canonical" href="https://koreaaviationpress.kr/">
+
+<!-- 파비콘. favicon.png(512×512)를 저장소에 올리거나, 없으면 이 줄을 지우세요. -->
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<!-- 카카오톡·페이스북 링크 미리보기 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한국항공출판">
+<meta property="og:title" content="FAA 항공 교범 한국어판 — 한국항공출판">
+<meta property="og:description" content="미국 연방항공청(FAA) 항공 교범 3종의 한국어 번역판. 전문은 Google Books에서 열람하실 수 있습니다.">
+<meta property="og:url" content="https://koreaaviationpress.kr/">
+<meta property="og:image" content="https://koreaaviationpress.kr/PHAK.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- 검색엔진이 기계적으로 읽는 도서 정보. 화면에는 보이지 않습니다. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://koreaaviationpress.kr/#org",
+      "name": "한국항공출판",
+      "url": "https://koreaaviationpress.kr/",
+      "email": "contact@koreaaviationpress.kr",
+      "founder": { "@type": "Person", "name": "김재성" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://koreaaviationpress.kr/#website",
+      "url": "https://koreaaviationpress.kr/",
+      "name": "한국항공출판",
+      "inLanguage": "ko",
+      "publisher": { "@id": "https://koreaaviationpress.kr/#org" }
+    },
+    {
+      "@type": "Book",
+      "name": "조종사를 위한 항공지식",
+      "alternateName": "Pilot's Handbook of Aeronautical Knowledge",
+      "isbn": "9791122111811",
+      "inLanguage": "ko",
+      "bookFormat": "https://schema.org/Paperback",
+      "datePublished": "2026-09-01",
+      "author": { "@type": "Organization", "name": "Federal Aviation Administration" },
+      "translator": { "@type": "Person", "name": "김재성" },
+      "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
+      "image": "https://koreaaviationpress.kr/PHAK.png",
+      "url": "https://koreaaviationpress.kr/"
+    },
+    {
+      "@type": "Book",
+      "name": "항공기 비행 지침서",
+      "alternateName": "Airplane Flying Handbook",
+      "isbn": "9791122111828",
+      "inLanguage": "ko",
+      "bookFormat": "https://schema.org/Paperback",
+      "datePublished": "2026-09-01",
+      "author": { "@type": "Organization", "name": "Federal Aviation Administration" },
+      "translator": { "@type": "Person", "name": "김재성" },
+      "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
+      "image": "https://koreaaviationpress.kr/AFH.png",
+      "url": "https://koreaaviationpress.kr/"
+    },
+    {
+      "@type": "Book",
+      "name": "항공 기상 지침서",
+      "alternateName": "Aviation Weather Handbook",
+      "isbn": "9791122111835",
+      "inLanguage": "ko",
+      "bookFormat": "https://schema.org/Paperback",
+      "datePublished": "2026-09-01",
+      "author": { "@type": "Organization", "name": "Federal Aviation Administration" },
+      "translator": { "@type": "Person", "name": "김재성" },
+      "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
+      "image": "https://koreaaviationpress.kr/AWH.png",
+      "url": "https://koreaaviationpress.kr/"
+    }
+  ]
+}
+</script>
 
 <!-- KoPubWorld 웹폰트 (돋움 + 바탕 통합) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-kopubworld@1.0">
@@ -17,8 +100,8 @@
   --fg:   #FFFFFF;                 /* 글자·선 색 */
   --dim:  rgba(255,255,255,.62);   /* 흐린 글자 */
   --line: rgba(255,255,255,.24);   /* 가는 구분선 */
-  --serif:'KoPubWorld Batang','KoPub Dotum',serif;
-  --sans: 'KoPubWorld Dotum','KoPub Dotum',sans;
+  --serif:'KoPubWorld Batang','KoPub Batang',serif;
+  --sans: 'KoPubWorld Dotum','KoPub Dotum',sans-serif;
 }
 /* ───────────────────────────────────────────────────── */
 
@@ -50,19 +133,10 @@ main{
   margin:0 0 40px;
   font-family:var(--sans);
   font-size:15px;
+  font-weight:400;
   letter-spacing:.35em;
   text-indent:.35em;           /* 자간 때문에 중앙이 밀리는 것 보정 */
   color:var(--dim);
-}
-
-h1{
-  margin:0;
-  font-family:var(--sans);
-  font-weight:700;
-  font-size:clamp(64px,17vw,124px);
-  line-height:1;
-  letter-spacing:.08em;
-  text-indent:.08em;
 }
 
 .rule{
@@ -87,13 +161,6 @@ h1{
   line-height:1.65;
   color:rgba(255,255,255,.58);
 }
-.original-title{
-  margin:6px 0 14px;
-  font-size:13px;
-  font-weight:300;
-  color:rgba(255,255,255,.55);
-  letter-spacing:.03em;
-}
 .contact{ margin:28px 0 0; font-size:14px; }
 .contact a{
   color:var(--fg);
@@ -101,8 +168,8 @@ h1{
   padding-bottom:2px;
   border-bottom:1px solid var(--line);
 }
-.contact a:hover,
-.contact a:focus-visible{ border-bottom-color:var(--fg); }
+.contact a:hover, .contact a:focus-visible{ border-bottom-color:var(--fg); }
+
 .books{
   width:100%;
   max-width:460px;
@@ -154,69 +221,67 @@ h1{
 <body>
 <main>
 
-  <p class="wordmark">한국항공출판</p>
+  <h1 class="wordmark">한국항공출판</h1>
 
   <hr class="rule">
 
   <p class="notice">
-    항공 교범 번역서의 소개와 Google Books 전문 열람 링크를 준비하고 있습니다.<br>
-    준비되는 대로 이곳에서 안내하겠습니다.
+    미국 연방항공청(FAA)의 항공 교범을 한국어로 옮겨 펴냅니다.<br>
+    전문 열람용 Google Books 링크는 준비되는 대로 이곳에 안내하겠습니다.
   </p>
+
   <section class="books">
 
- 
   <article class="book">
-    <img class="book-cover" src="PHAK.png" alt="조종사를 위한 항공지식 표지">
+    <img class="book-cover" src="PHAK.png" alt="조종사를 위한 항공지식(FAA Pilot's Handbook of Aeronautical Knowledge 한국어판) 표지">
     <h2>조종사를 위한 항공지식</h2>
-   
-    <p class="original-title">Pilot’s Handbook of Aeronautical Knowledge</p>
+    <p class="original-title">Pilot&rsquo;s Handbook of Aeronautical Knowledge</p>
     <p>
       ISBN: 979-11-221118-1-1 (93550)<br>
       저자: 미국 연방항공청 (Federal Aviation Administration)<br>
       역자: 김재성<br>
       발행일: 2026.09.01<br>
-      가격: 85,000원<br>
+      가격: 85,000원
     </p>
   </article>
-    
+
   <article class="book">
-    <img class="book-cover" src="AFH.png" alt="항공기 비행 지침서 표지">
+    <img class="book-cover" src="AFH.png" alt="항공기 비행 지침서(FAA Airplane Flying Handbook 한국어판) 표지" loading="lazy">
     <h2>항공기 비행 지침서</h2>
-   
     <p class="original-title">Airplane Flying Handbook</p>
     <p>
       ISBN: 979-11-221118-2-8 (93550)<br>
       저자: 미국 연방항공청 (Federal Aviation Administration)<br>
       역자: 김재성<br>
       발행일: 2026.09.01<br>
-      가격: 85,000원<br>
+      가격: 85,000원
     </p>
   </article>
-  
-   <article class="book">
-    <img class="book-cover" src="AWH.png" alt="항공 기상 지침서 표지">
+
+  <article class="book">
+    <img class="book-cover" src="AWH.png" alt="항공 기상 지침서(FAA Aviation Weather Handbook 한국어판) 표지" loading="lazy">
     <h2>항공 기상 지침서</h2>
-   
     <p class="original-title">Aviation Weather Handbook</p>
     <p>
       ISBN: 979-11-221118-3-5 (93550)<br>
       저자: 미국 연방항공청 (Federal Aviation Administration)<br>
       역자: 김재성<br>
       발행일: 2026.09.01<br>
-      가격: 55,000원<br>
+      가격: 55,000원
     </p>
   </article>
-    
-</section>
-  
+
+  </section>
+
   <p class="contact">
     <a href="mailto:contact@koreaaviationpress.kr">contact@koreaaviationpress.kr</a>
   </p>
-   <p class="notice2">
-      한국항공출판<br> 
-      대표 김재성<br> 
-      한국항공우주학회 찬조회원
-    </p>
+
+  <p class="notice2">
+    한국항공출판<br>
+    대표 김재성<br>
+    한국항공우주학회 찬조회원
+  </p>
 </main>
 </body>
 </html>
