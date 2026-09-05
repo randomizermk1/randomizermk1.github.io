@@ -111,6 +111,11 @@ main{
   text-align:center;
 }
 .msg a{ color:var(--fg); border-bottom:1px solid var(--line); text-decoration:none; }
+.msg .err{
+  display:inline-block; margin-top:10px;
+  font-size:12px; color:rgba(255,255,255,.42);
+  word-break:break-all;
+}
 .foot{
   max-width:34em; margin:8px auto 0; padding:18px 4px 0;
   border-top:1px solid var(--line);
@@ -138,7 +143,8 @@ main{
 <script type="module">
 const FILE  = 'preview-30p.pdf';
 const VER   = '5.5.207';
-const CDN   = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${VER}/`;
+const LOCAL = 'pdfjs/';                                   // 같은 서버에 올려 둔 pdf.js
+const CDN   = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${VER}/legacy/build/`;
 const WINDOW_PAGES = 1;          // 현재 쪽 앞뒤로 이만큼만 그려 둔다
 const MAX_DPR = 2;
 const MAX_CANVAS_W = 1600;
@@ -149,30 +155,70 @@ const counter = document.getElementById('counter');
 const progress = document.getElementById('progress');
 const zoomBtn = document.getElementById('zoom');
 
-const fallback = () => {
+const fallback = (detail) => {
+  if (!msg.isConnected) main.insertBefore(msg, main.firstChild);
   msg.innerHTML =
     '이 브라우저에서는 미리보기를 표시하지 못했습니다.<br>' +
-    `<a href="${FILE}" target="_blank" rel="noopener">견본 PDF 열기</a>`;
+    `<a href="${FILE}" target="_blank" rel="noopener">견본 PDF 열기</a>` +
+    (detail ? `<br><span class="err">${String(detail).slice(0, 200)}</span>` : '');
   msg.style.display = '';
 };
 
+/* 30초 안에 첫 쪽이 안 그려지면 대체 안내를 띄운다. */
+const watchdog = setTimeout(() => {
+  if (!document.querySelector('.page[data-state="done"]')) fallback('시간 초과');
+}, 30000);
+
 /* PDF.js 불러오기.
-   최신 문법을 지원하지 않는 구형 브라우저(iOS 17.3 이하 등)에서는
-   폴리필이 들어 있는 legacy 빌드를 쓴다. */
+   같은 서버에 올려 둔 사본을 먼저 쓴다. 작업 스레드(worker)는 브라우저 규칙상
+   다른 도메인에서 못 불러오므로, 같은 서버에 두어야 제대로 동작한다.
+   사본이 없으면 CDN으로 넘어간다. */
 async function loadPdfjs(){
-  const modern = typeof Promise.withResolvers === 'function'
-              && typeof structuredClone === 'function';
-  for (const dir of (modern ? ['build/', 'legacy/build/'] : ['legacy/build/', 'build/'])){
+  let last;
+  for (const [lib, worker] of [
+        [LOCAL + 'pdf.min.js',  LOCAL + 'pdf.worker.min.js'],
+        [CDN   + 'pdf.min.mjs', CDN   + 'pdf.worker.min.mjs']]){
     try{
-      const lib = await import(CDN + dir + 'pdf.min.mjs');
-      lib.GlobalWorkerOptions.workerSrc = CDN + dir + 'pdf.worker.min.mjs';
-      return lib;
-    }catch(_){ /* 다음 경로 시도 */ }
+      const mod = await import(lib);
+      mod.GlobalWorkerOptions.workerSrc = worker;
+      return mod;
+    }catch(e){ last = e; }
   }
-  throw new Error('pdf.js를 불러오지 못했습니다.');
+  throw last || new Error('pdf.js를 불러오지 못했습니다.');
 }
 
 let doc = null, wraps = [], current = 1, wide = false, resizeTimer = 0;
+
+/* 안전 모드: 글꼴을 브라우저에 등록하지 않고 획을 직접 그린다.
+   글꼴 등록이 막히는 브라우저(일부 안드로이드 브라우저)에서 빈 쪽이 나오는 것을
+   막아 준다. 주소 끝에 ?safe=1 을 붙여 강제로 켤 수도 있다. */
+let safeMode = new URLSearchParams(location.search).has('safe');
+let blankChecked = false;
+
+const docOptions = () => safeMode
+  ? { url: FILE, disableFontFace: true, isEvalSupported: false }
+  : { url: FILE };
+
+/* 그려진 쪽이 통째로 백지인지 확인한다. */
+function looksBlank(canvas){
+  try{
+    const probe = document.createElement('canvas');
+    probe.width = 80; probe.height = 112;
+    const c = probe.getContext('2d', { willReadFrequently:true });
+    c.drawImage(canvas, 0, 0, 80, 112);
+    const d = c.getImageData(0, 0, 80, 112).data;
+    for (let i = 0; i < d.length; i += 4) if (d[i] < 250) return false;
+    return true;
+  }catch(_){ return false; }
+}
+
+async function retryInSafeMode(){
+  safeMode = true;
+  for (let i = 1; i <= wraps.length; i++) releasePage(i);
+  try{ await doc.destroy(); }catch(_){}
+  doc = await pdfjsLib.getDocument(docOptions()).promise;
+  syncWindow();
+}
 
 async function renderPage(n){
   const wrap = wraps[n - 1];
@@ -196,8 +242,17 @@ async function renderPage(n){
       wrap.replaceChildren(canvas);
       wrap.dataset.state = 'done';
     }
+    if (n === 1 && !blankChecked && !safeMode){
+      blankChecked = true;
+      if (looksBlank(canvas)){
+        wrap.dataset.busy = '0';
+        return retryInSafeMode();
+      }
+    }
   }catch(e){
     console.error('page ' + n, e);
+    wrap.dataset.label = `${n}쪽을 그리지 못했습니다 — ${(e && e.message || e)}`
+                           .slice(0, 90);
   }finally{
     wrap.dataset.busy = '0';
   }
@@ -256,28 +311,24 @@ window.addEventListener('resize', () => {
   resizeTimer = setTimeout(redrawAll, 250);
 });
 
+let pdfjsLib = null;
+
 (async () => {
-  let pdfjsLib;
   try{
     pdfjsLib = await loadPdfjs();
   }catch(e){
-    console.error(e); fallback(); return;
+    console.error(e); clearTimeout(watchdog); fallback(e && e.message); return;
   }
 
   try{
-    const task = pdfjsLib.getDocument({
-      url: FILE,
-      cMapUrl: CDN + 'web/cmaps/',
-      cMapPacked: true,
-      standardFontDataUrl: CDN + 'web/standard_fonts/',
-      wasmUrl: CDN + 'web/wasm/',
-      iccUrl:  CDN + 'web/iccs/'
-    });
+    const task = pdfjsLib.getDocument(docOptions());
     task.onProgress = ({ loaded, total }) => {
+      if (loaded) clearTimeout(watchdog);
       if (!total) return;
       progress.style.width = Math.min(100, loaded / total * 100) + '%';
     };
     doc = await task.promise;
+    clearTimeout(watchdog);
     progress.style.width = '100%';
     setTimeout(() => { progress.style.opacity = '0'; }, 400);
 
@@ -300,8 +351,9 @@ window.addEventListener('resize', () => {
     const foot = document.createElement('p');
     foot.className = 'foot';
     foot.innerHTML =
-      '이 견본은 인쇄본과 같은 판형(JIS B5)과 조판입니다.<br>' 
-      
+      '이 견본은 인쇄본과 같은 판형(JIS B5)과 조판입니다.<br>' +
+      '전문은 구글 북스에서 열람하실 수 있습니다. 열람 주소는 누리집에 안내합니다.<br>' +
+      '<a href="mailto:contact@koreaaviationpress.kr">contact@koreaaviationpress.kr</a>';
     main.appendChild(foot);
 
     counter.textContent = `1 / ${doc.numPages}`;
@@ -309,9 +361,9 @@ window.addEventListener('resize', () => {
     updateCurrent();
   }catch(e){
     console.error(e);
+    clearTimeout(watchdog);
     main.replaceChildren();
-    main.appendChild(msg); msg.style.display = '';
-    fallback();
+    fallback(e && e.message);
   }
 })();
 </script>
