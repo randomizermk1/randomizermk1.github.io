@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E2340">
+
+<title>미리보기 견본 — 한국항공출판 FAA 항공 교범 한국어판</title>
+<meta name="description" content="FAA 항공 교범 한국어판 3종(PHAK·AFH·AWH)에서 발췌한 30쪽 견본. 실제 인쇄본과 같은 판형과 조판입니다.">
+<link rel="canonical" href="https://koreaaviationpress.kr/preview.html">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한국항공출판">
+<meta property="og:title" content="미리보기 견본 — FAA 항공 교범 한국어판">
+<meta property="og:description" content="PHAK·AFH·AWH 세 권에서 발췌한 30쪽 견본.">
+<meta property="og:url" content="https://koreaaviationpress.kr/preview.html">
+<meta property="og:image" content="https://koreaaviationpress.kr/PHAK.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-kopubworld@1.0">
+
+<style>
+:root{
+  --bg:   #0E2340;
+  --fg:   #FFFFFF;
+  --dim:  rgba(255,255,255,.62);
+  --line: rgba(255,255,255,.24);
+  --sans: 'KoPubWorld Dotum','KoPub Dotum',sans-serif;
+  --bar:  56px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--bg); }
+body{
+  color:var(--fg);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  overscroll-behavior-y:none;
+}
+
+/* ── 상단 막대 ── */
+.bar{
+  position:fixed; inset:0 0 auto 0; z-index:10;
+  height:calc(var(--bar) + env(safe-area-inset-top));
+  padding:env(safe-area-inset-top) 14px 0;
+  display:flex; align-items:center; gap:10px;
+  background:rgba(14,35,64,.94);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.bar a, .bar button{
+  font-family:inherit; font-size:13px; font-weight:300;
+  color:var(--fg); background:transparent;
+  border:1px solid var(--line); border-radius:999px;
+  padding:7px 13px; cursor:pointer; text-decoration:none;
+  white-space:nowrap; line-height:1;
+}
+.bar a:hover, .bar button:hover,
+.bar a:focus-visible, .bar button:focus-visible{ border-color:var(--fg); }
+.bar .spacer{ flex:1 1 auto; }
+.counter{
+  font-size:13px; font-weight:300; color:var(--dim);
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.home{ letter-spacing:.02em; }
+
+/* ── 진행 막대 ── */
+.progress{
+  position:fixed; top:calc(var(--bar) + env(safe-area-inset-top)); left:0; z-index:11;
+  height:2px; width:0; background:var(--fg); transition:width .2s ease;
+}
+
+/* ── 쪽 목록 ── */
+main{
+  padding:calc(var(--bar) + env(safe-area-inset-top) + 18px) 14px
+          calc(28px + env(safe-area-inset-bottom));
+  max-width:920px; margin:0 auto;
+}
+.page{
+  position:relative;
+  width:100%;
+  aspect-ratio:182 / 257;      /* JIS B5 */
+  margin:0 auto 18px;
+  background:#fff;
+  box-shadow:0 2px 18px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+.page canvas{ display:block; width:100%; height:auto; }
+.page::after{
+  content:attr(data-label);
+  position:absolute; inset:auto 0 50% 0;
+  text-align:center; font-size:12px; color:#8a97a8;
+  transition:opacity .2s;
+}
+.page[data-state="done"]::after{ opacity:0; }
+
+.wide main{ max-width:none; }
+.wide .page{ width:160%; max-width:none; }
+.wide{ overflow-x:auto; }
+
+/* ── 안내·오류 ── */
+.msg{
+  max-width:34em; margin:0 auto; padding:28px 4px;
+  font-size:14px; font-weight:300; line-height:1.9; color:var(--dim);
+  text-align:center;
+}
+.msg a{ color:var(--fg); border-bottom:1px solid var(--line); text-decoration:none; }
+.foot{
+  max-width:34em; margin:8px auto 0; padding:18px 4px 0;
+  border-top:1px solid var(--line);
+  font-size:12px; font-weight:300; line-height:1.8; color:rgba(255,255,255,.55);
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bar">
+  <a class="home" href="./">← 한국항공출판</a>
+  <span class="spacer"></span>
+  <span class="counter" id="counter">— / —</span>
+  <button id="zoom" type="button" aria-pressed="false">확대</button>
+  <a id="dl" href="preview-30p.pdf" download="한국항공출판_FAA교범3종_견본.pdf">내려받기</a>
+</div>
+<div class="progress" id="progress"></div>
+
+<main id="main">
+  <p class="msg" id="msg">견본을 불러오는 중입니다.</p>
+</main>
+
+<script type="module">
+const FILE  = 'preview-30p.pdf';
+const VER   = '5.5.207';
+const CDN   = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${VER}/`;
+const WINDOW_PAGES = 1;          // 현재 쪽 앞뒤로 이만큼만 그려 둔다
+const MAX_DPR = 2;
+const MAX_CANVAS_W = 1600;
+
+const main = document.getElementById('main');
+const msg = document.getElementById('msg');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+const zoomBtn = document.getElementById('zoom');
+
+const fallback = () => {
+  msg.innerHTML =
+    '이 브라우저에서는 미리보기를 표시하지 못했습니다.<br>' +
+    `<a href="${FILE}" target="_blank" rel="noopener">견본 PDF 열기</a>`;
+  msg.style.display = '';
+};
+
+/* PDF.js 불러오기.
+   최신 문법을 지원하지 않는 구형 브라우저(iOS 17.3 이하 등)에서는
+   폴리필이 들어 있는 legacy 빌드를 쓴다. */
+async function loadPdfjs(){
+  const modern = typeof Promise.withResolvers === 'function'
+              && typeof structuredClone === 'function';
+  for (const dir of (modern ? ['build/', 'legacy/build/'] : ['legacy/build/', 'build/'])){
+    try{
+      const lib = await import(CDN + dir + 'pdf.min.mjs');
+      lib.GlobalWorkerOptions.workerSrc = CDN + dir + 'pdf.worker.min.mjs';
+      return lib;
+    }catch(_){ /* 다음 경로 시도 */ }
+  }
+  throw new Error('pdf.js를 불러오지 못했습니다.');
+}
+
+let doc = null, wraps = [], current = 1, wide = false, resizeTimer = 0;
+
+async function renderPage(n){
+  const wrap = wraps[n - 1];
+  if (!wrap || wrap.dataset.state === 'done' || wrap.dataset.busy === '1') return;
+  wrap.dataset.busy = '1';
+  try{
+    const page = await doc.getPage(n);
+    const cssW = wrap.clientWidth || 600;
+    const base = page.getViewport({ scale: 1 });
+    const dpr  = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+    let px = Math.min(cssW * dpr, MAX_CANVAS_W);
+    const vp = page.getViewport({ scale: px / base.width });
+
+    const canvas = document.createElement('canvas');
+    canvas.width  = Math.round(vp.width);
+    canvas.height = Math.round(vp.height);
+    const ctx = canvas.getContext('2d', { alpha:false });
+    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+    if (wrap.dataset.busy === '1'){
+      wrap.replaceChildren(canvas);
+      wrap.dataset.state = 'done';
+    }
+  }catch(e){
+    console.error('page ' + n, e);
+  }finally{
+    wrap.dataset.busy = '0';
+  }
+}
+
+function releasePage(n){
+  const wrap = wraps[n - 1];
+  if (!wrap || wrap.dataset.state !== 'done') return;
+  wrap.replaceChildren();
+  wrap.dataset.state = '';
+}
+
+function syncWindow(){
+  for (let i = 1; i <= wraps.length; i++){
+    if (Math.abs(i - current) <= WINDOW_PAGES) renderPage(i);
+    else if (Math.abs(i - current) > WINDOW_PAGES + 1) releasePage(i);
+  }
+}
+
+function updateCurrent(){
+  const mid = window.innerHeight / 2;
+  let best = current, bestD = Infinity;
+  for (let i = 0; i < wraps.length; i++){
+    const r = wraps[i].getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) continue;
+    const d = Math.abs((r.top + r.bottom) / 2 - mid);
+    if (d < bestD){ bestD = d; best = i + 1; }
+  }
+  if (best !== current){
+    current = best;
+    counter.textContent = `${current} / ${wraps.length}`;
+    syncWindow();
+  }
+}
+
+function redrawAll(){
+  for (let i = 1; i <= wraps.length; i++) releasePage(i);
+  syncWindow();
+}
+
+zoomBtn.addEventListener('click', () => {
+  wide = !wide;
+  document.documentElement.classList.toggle('wide', wide);
+  zoomBtn.textContent = wide ? '축소' : '확대';
+  zoomBtn.setAttribute('aria-pressed', String(wide));
+  redrawAll();
+});
+
+window.addEventListener('scroll', () => {
+  if (window.__t) return;
+  window.__t = requestAnimationFrame(() => { window.__t = 0; updateCurrent(); });
+}, { passive:true });
+
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(redrawAll, 250);
+});
+
+(async () => {
+  let pdfjsLib;
+  try{
+    pdfjsLib = await loadPdfjs();
+  }catch(e){
+    console.error(e); fallback(); return;
+  }
+
+  try{
+    const task = pdfjsLib.getDocument({
+      url: FILE,
+      cMapUrl: CDN + 'web/cmaps/',
+      cMapPacked: true,
+      standardFontDataUrl: CDN + 'web/standard_fonts/',
+      wasmUrl: CDN + 'web/wasm/',
+      iccUrl:  CDN + 'web/iccs/'
+    });
+    task.onProgress = ({ loaded, total }) => {
+      if (!total) return;
+      progress.style.width = Math.min(100, loaded / total * 100) + '%';
+    };
+    doc = await task.promise;
+    progress.style.width = '100%';
+    setTimeout(() => { progress.style.opacity = '0'; }, 400);
+
+    const first = await doc.getPage(1);
+    const vp1 = first.getViewport({ scale: 1 });
+
+    msg.remove();
+    const frag = document.createDocumentFragment();
+    for (let i = 1; i <= doc.numPages; i++){
+      const wrap = document.createElement('div');
+      wrap.className = 'page';
+      wrap.style.aspectRatio = `${vp1.width} / ${vp1.height}`;
+      wrap.dataset.label = `${i} / ${doc.numPages}`;
+      wrap.dataset.state = '';
+      frag.appendChild(wrap);
+      wraps.push(wrap);
+    }
+    main.appendChild(frag);
+
+    const foot = document.createElement('p');
+    foot.className = 'foot';
+    foot.innerHTML =
+      '이 견본은 인쇄본과 같은 판형(JIS B5)과 조판입니다.<br>' +
+      '전문 PDF는 누리집에서 무료로 내려받을 수 있습니다.<br>' +
+      '<a href="mailto:contact@koreaaviationpress.kr">contact@koreaaviationpress.kr</a>';
+    main.appendChild(foot);
+
+    counter.textContent = `1 / ${doc.numPages}`;
+    syncWindow();
+    updateCurrent();
+  }catch(e){
+    console.error(e);
+    main.replaceChildren();
+    main.appendChild(msg); msg.style.display = '';
+    fallback();
+  }
+})();
+</script>
+</body>
+</html>

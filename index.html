@@ -164,6 +164,33 @@ main{
   line-height:1.65;
   color:rgba(255,255,255,.58);
 }
+/* 미리보기 버튼 */
+.actions{ margin:30px 0 0; }
+.btn{
+  display:inline-block;
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:400;
+  line-height:1.4;
+  color:var(--fg);
+  text-decoration:none;
+  padding:13px 26px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  transition:border-color .2s, background-color .2s;
+}
+.btn:hover, .btn:focus-visible{
+  border-color:var(--fg);
+  background-color:rgba(255,255,255,.06);
+}
+.btn small{
+  display:block;
+  margin-top:5px;
+  font-size:11px;
+  font-weight:300;
+  color:var(--dim);
+}
+
 .contact{ margin:28px 0 0; font-size:14px; }
 .contact a{
   color:var(--fg);
@@ -231,6 +258,13 @@ main{
   <p class="notice">
     미국 연방항공청(FAA)의 항공 교범을 한국어로 옮겨 펴냅니다.<br>
     전문 열람용 Google Books 링크는 준비되는 대로 이곳에 안내하겠습니다.
+  </p>
+
+  <p class="actions">
+    <a class="btn" href="preview.html">
+      미리보기 견본
+      <small>세 권 발췌 30쪽 · 인쇄본과 같은 판형</small>
+    </a>
   </p>
 
   <section class="books">
