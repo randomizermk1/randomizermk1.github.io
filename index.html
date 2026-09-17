@@ -59,7 +59,7 @@
       "translator": { "@type": "Person", "name": "김재성" },
       "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
       "image": "https://koreaaviationpress.kr/PHAK.png",
-      "url": "https://koreaaviationpress.kr/"
+      "url": "https://books.google.com/books?id=dhcIEgAAQBAJ"
     },
     {
       "@type": "Book",
@@ -73,7 +73,7 @@
       "translator": { "@type": "Person", "name": "김재성" },
       "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
       "image": "https://koreaaviationpress.kr/AFH.png",
-      "url": "https://koreaaviationpress.kr/"
+      "url": "https://books.google.com/books?id=vBcIEgAAQBAJ"
     },
     {
       "@type": "Book",
@@ -87,7 +87,7 @@
       "translator": { "@type": "Person", "name": "김재성" },
       "publisher": { "@id": "https://koreaaviationpress.kr/#org" },
       "image": "https://koreaaviationpress.kr/AWH.png",
-      "url": "https://koreaaviationpress.kr/"
+      "url": "https://books.google.com/books?id=_RgIEgAAQBAJ"
     }
   ]
 }
@@ -113,7 +113,7 @@ html,body{ height:100%; }
 
 body{
   margin:0;
-  padding:64px 24px;
+  padding:64px 24px 120px;
   min-height:100vh;
   background:var(--bg);
   color:var(--fg);
@@ -238,6 +238,21 @@ main{
   line-height:1.65;
   color:rgba(255,255,255,.70);
 }
+
+.book h2 a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--fg);
+  text-decoration:none;
+  border-bottom:1px solid var(--line);
+}
+.book h2 a svg{
+  width:15px;
+  height:15px;
+  flex:none;
+}
+.book h2 a:hover, .book h2 a:focus-visible{ border-bottom-color:var(--fg); }
 @keyframes rise{
   from{ opacity:0; transform:translateY(10px); }
   to  { opacity:1; transform:none; }
@@ -257,53 +272,44 @@ main{
 
   <p class="notice">
     미국 연방항공청(FAA)의 항공 교범을 한국어로 옮겨 펴냅니다.<br>
-    전문 열람용 Google Books 링크는 준비되는 대로 이곳에 안내하겠습니다.
-  </p>
-
-  <p class="actions">
-    <a class="btn" href="preview.html">
-      미리보기 견본
-      <small>세 권 발췌 30쪽 · 인쇄본과 같은 판형</small>
-    </a>
+    각 도서 전문은 Google Books에서 무료로 열람하실 수 있습니다.<br>
+    세 권 모두 2026.09.01 발행.
   </p>
 
   <section class="books">
 
   <article class="book">
     <img class="book-cover" src="PHAK.png" alt="조종사를 위한 항공지식(FAA Pilot's Handbook of Aeronautical Knowledge 한국어판) 표지">
-    <h2>조종사를 위한 항공지식</h2>
+    <h2><a href="https://books.google.com/books?id=dhcIEgAAQBAJ&printsec=frontcover" target="_blank" rel="noopener">조종사를 위한 항공지식<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></h2>
     <p class="original-title">Pilot&rsquo;s Handbook of Aeronautical Knowledge</p>
     <p>
       ISBN: 979-11-221118-1-1 (93550)<br>
-      저자: 미국 연방항공청 (Federal Aviation Administration)<br>
+      저자: 미국 연방항공청<br>
       역자: 김재성<br>
-      발행일: 2026.09.01<br>
       가격: 85,000원
     </p>
   </article>
 
   <article class="book">
     <img class="book-cover" src="AFH.png" alt="항공기 비행 지침서(FAA Airplane Flying Handbook 한국어판) 표지" loading="lazy">
-    <h2>항공기 비행 지침서</h2>
+    <h2><a href="https://books.google.com/books?id=vBcIEgAAQBAJ&printsec=frontcover" target="_blank" rel="noopener">항공기 비행 지침서<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></h2>
     <p class="original-title">Airplane Flying Handbook</p>
     <p>
       ISBN: 979-11-221118-2-8 (93550)<br>
-      저자: 미국 연방항공청 (Federal Aviation Administration)<br>
+      저자: 미국 연방항공청<br>
       역자: 김재성<br>
-      발행일: 2026.09.01<br>
       가격: 85,000원
     </p>
   </article>
 
   <article class="book">
     <img class="book-cover" src="AWH.png" alt="항공 기상 지침서(FAA Aviation Weather Handbook 한국어판) 표지" loading="lazy">
-    <h2>항공 기상 지침서</h2>
+    <h2><a href="https://books.google.com/books?id=_RgIEgAAQBAJ&printsec=frontcover" target="_blank" rel="noopener">항공 기상 지침서<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a></h2>
     <p class="original-title">Aviation Weather Handbook</p>
     <p>
       ISBN: 979-11-221118-3-5 (93550)<br>
-      저자: 미국 연방항공청 (Federal Aviation Administration)<br>
+      저자: 미국 연방항공청<br>
       역자: 김재성<br>
-      발행일: 2026.09.01<br>
       가격: 55,000원
     </p>
   </article>
