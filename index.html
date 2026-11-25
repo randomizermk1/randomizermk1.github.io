@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0e2340">
+<meta name="theme-color" content="#0f1b2d">
+<meta name="color-scheme" content="dark">
 <title>한국항공출판 | FAA 조종·정비 교범 한국어판</title>
 <meta name="description" content="한국항공출판은 미국 연방항공청(FAA) 조종·정비 교범의 한국어판과 항공 도서를 펴냅니다. 교범 전자책은 Google Play 북스에서 무료로 열람할 수 있고, 종이책은 온라인 서점에서 판매합니다.">
 <link rel="canonical" href="https://koreaaviationpress.kr/">
@@ -24,69 +25,71 @@
 <style>
 /* 글꼴: 휴대폰은 기기 기본 글꼴(내려받기 없음). 폭 768px부터 KoPubWorld 돋움, 받는 동안은 기본 글꼴 */
 @font-face{font-family:'KoPubWorld Dotum';font-style:normal;font-weight:500;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/font-kopubworld@1.0.3/fonts/KoPubWorld-Dotum-Medium.woff2') format('woff2'),url('https://cdn.jsdelivr.net/npm/font-kopubworld@1.0.3/fonts/KoPubWorld-Dotum-Medium.woff') format('woff')}@font-face{font-family:'KoPubWorld Dotum';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/font-kopubworld@1.0.3/fonts/KoPubWorld-Dotum-Bold.woff2') format('woff2'),url('https://cdn.jsdelivr.net/npm/font-kopubworld@1.0.3/fonts/KoPubWorld-Dotum-Bold.woff') format('woff')}
-:root{--navy:#0e2340;--navy2:#1c3a5e;--paper:#f6f5f1;--card:#fff;--ink:#1a222d;--dim:#566170;--line:#dedad0;--focus:#8a5f14;--sans:system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+:root{color-scheme:dark;--bg:#111c2c;--top:#0c1524;--card:#1a283b;--ink:#e4e9f0;--dim:#a7b4c5;--line:#2e3f57;--accent:#dfe6ef;--focus:#e6c88e;--sans:system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:68px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:500 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 p,h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}
-.skip{position:absolute;left:16px;top:-64px;background:#fff;color:var(--navy);padding:10px 16px;z-index:20;font-weight:700}
+.skip{position:absolute;left:16px;top:-64px;background:var(--accent);color:var(--top);padding:10px 16px;z-index:20;font-weight:700}
 .skip:focus{top:8px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
 a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
 
 /* 머리 */
-.hero{background:var(--navy);color:#fff}
-.hero .wrap{padding-top:32px;padding-bottom:32px}
+.hero{background:var(--top);color:#fff}
+.hero .wrap{padding-top:22px;padding-bottom:22px}
 .brand-en{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a9b8cb}
-.hero h1{margin:0;font-size:28px;line-height:1.3;font-weight:700;letter-spacing:.02em}
-.lead{margin:18px 0 0;max-width:38em;color:#dbe3ee;font-size:16px}
-.lead+.lead{margin-top:6px;color:#b9c6d6;font-size:15px}
+.hero h1{margin:0;font-size:26px;line-height:1.3;font-weight:700;letter-spacing:.02em}
+.lead{margin:12px 0 0;max-width:38em;color:#dbe3ee;font-size:15px;line-height:1.6}
+.lead+.lead{margin-top:4px;color:#b9c6d6;font-size:14px}
 
 /* 책장 이동 */
-.tabs{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
 .tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 .tabs .wrap::-webkit-scrollbar{display:none}
-.tabs a{flex:0 0 auto;display:flex;align-items:center;min-height:48px;padding:0 14px;text-decoration:none;font-size:15px;font-weight:700;color:var(--navy);border-bottom:2px solid transparent}
+.tabs a{flex:0 0 auto;display:flex;align-items:center;min-height:48px;padding:0 14px;text-decoration:none;font-size:15px;font-weight:700;color:var(--ink);border-bottom:2px solid transparent}
 .tabs a:first-child{margin-left:-14px}
-.tabs a:hover{border-bottom-color:var(--navy)}
+.tabs a:hover{border-bottom-color:var(--accent)}
 .tabs a:focus-visible{outline-offset:-3px}
 
 /* 책장 */
-.shelf{padding:40px 0 4px}
-.shelf>header{margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--navy)}
-.shelf h2{margin:0;font-size:22px;line-height:1.4;font-weight:700;color:var(--navy)}
+.shelf{padding:26px 0 4px}
+.shelf>header{margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.shelf h2{margin:0;font-size:22px;line-height:1.4;font-weight:700;color:#fff}
 .more{display:flex;flex-wrap:wrap;gap:0 20px;margin:6px 0 0;padding:0;list-style:none;font-size:14px}
-.more a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--navy);text-underline-offset:4px}
+.more a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--dim);text-underline-offset:4px}
 .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 
 /* 책 한 권 */
 .book{display:grid;grid-template-columns:92px minmax(0,1fr);gap:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
-.cover{width:92px;height:auto;border-radius:2px;box-shadow:0 0 0 1px rgba(14,35,64,.14),0 6px 14px rgba(14,35,64,.16);align-self:start}
+.cover{width:92px;height:auto;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.10),0 6px 14px rgba(0,0,0,.35);align-self:start}
 .body{min-width:0}
-.book h3{margin:0;font-size:18px;line-height:1.45;font-weight:700}
+.book h3{margin:0;font-size:18px;line-height:1.45;font-weight:700;color:#fff}
 .orig{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--dim)}
 .credit{margin:2px 0 0;font-size:13px;line-height:1.5;color:var(--dim)}
-.sum{margin:10px 0 0;font-size:15px;line-height:1.7}
-.meta{margin:10px 0 0;font-size:13px;line-height:1.6;color:var(--dim);display:flex;flex-wrap:wrap;gap:0 12px}
-.scope{margin-top:6px;font-size:14px}
-.nw{white-space:nowrap}
-.scope summary{list-style:none;display:inline-flex;align-items:center;min-height:44px;cursor:pointer;color:var(--navy);font-weight:700;font-size:13px}
-.scope summary::-webkit-details-marker{display:none}
-.scope summary::before{content:'+';display:inline-block;width:1em;font-weight:700}
-.scope[open] summary::before{content:'−'}
-.scope p{margin:0 0 4px;color:var(--dim)}
+.meta{margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--ink)}
+.nw{display:inline-block;max-width:100%}
+.info{margin-top:4px;font-size:14px;line-height:1.7}
+.info summary{list-style:none;display:inline-flex;align-items:center;min-height:44px;cursor:pointer;color:var(--dim);font-weight:700;font-size:13px}
+.info summary::-webkit-details-marker{display:none}
+.info summary::before{content:'+';display:inline-block;width:1.1em;font-weight:700}
+.info[open] summary::before{content:'−'}
+.info-b{padding:0 0 6px;border-top:1px solid var(--line)}
+.info-b p{margin:10px 0 0;color:var(--ink)}
+.info-b b{display:block;font-size:13px;color:var(--dim)}
+.info-b .fine{font-size:13px;color:var(--dim)}
 .act{grid-column:1 / -1;display:grid;gap:10px}
-.read{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:15px}
-.read:hover{background:var(--navy2)}
-.buy{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px}
+.read{display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 10px;min-height:48px;border-radius:6px;background:var(--accent);color:#0c1524;text-decoration:none;font-weight:700;font-size:15px}
+.read:hover{background:#fff}
+.buy{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
 .buy-l{font-size:13px;color:var(--dim);white-space:nowrap}
-.buy-s{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px}
-.buy-s a{display:flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #b9b4a8;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap;background:#fff;color:var(--navy)}
-.buy-s a:hover{border-color:var(--navy);background:#f1f4f8}
+.buy-s{display:flex;flex-wrap:wrap;gap:6px}
+.buy-s a{flex:1 1 0;min-width:max-content;padding:0 10px;display:flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #4a5d78;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap;background:transparent;color:var(--ink)}
+.buy-s a:hover{border-color:var(--accent);background:#22344c}
 
 /* 꼬리 */
-.foot{margin-top:48px;background:var(--navy);color:#c5d0de;font-size:14px}
+.foot{margin-top:48px;background:var(--top);color:#b9c5d4;font-size:14px;border-top:1px solid var(--line)}
 .foot .wrap{padding-top:28px;padding-bottom:36px;display:grid;gap:20px}
 .foot h2{margin:0 0 4px;color:#fff;font-size:15px;font-weight:700}
 .foot p{margin:0}
@@ -98,7 +101,6 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
   .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
   .book{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:16px;padding:20px}
   .cover{width:124px}
-  .buy{grid-template-columns:minmax(0,1fr);gap:4px}
 }
 @media(min-width:768px){
   :root{--sans:'KoPubWorld Dotum',system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
@@ -107,13 +109,15 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
   .wrap{padding:0 32px}
   .hero .wrap{padding-top:52px;padding-bottom:52px}
   .hero h1{font-size:36px}
-  .lead{font-size:17px}
+  .lead{font-size:17px;margin-top:18px}
+  .lead+.lead{font-size:15px;margin-top:6px}
+  .shelf>header{margin-bottom:20px;padding-bottom:14px}
   .shelf{padding-top:56px}
   .shelf h2{font-size:24px}
   .foot .wrap{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{.tabs,.skip{display:none}.hero,.foot{background:none;color:#000}.hero h1,.foot h2,.foot a,.lead,.lead+.lead,.brand-en{color:#000}.book{break-inside:avoid}}
+@media print{body,.book{background:#fff;color:#000}.book h3,.shelf h2,.meta,.info-b p{color:#000}.tabs,.skip{display:none}.hero,.foot{background:none;color:#000}.hero h1,.foot h2,.foot a,.lead,.lead+.lead,.brand-en{color:#000}.book{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -133,9 +137,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>조종사를 위한 항공지식</h3>
 <p class="orig" lang="en">Pilot’s Handbook of Aeronautical Knowledge <span class="nw">(FAA-H-8083-25C)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">비행 원리, 항공기 구조와 계통, 비행계기, 중량과 평형, 성능, 기상, 공역, 항법, 항공의학, 항공 의사결정 등 조종사에게 필요한 항공 지식 전반을 다룹니다.</p>
-<p class="meta"><span>B5 · 484쪽 · 85,000원</span><span>ISBN 979-11-221118-1-1</span></p>
-<details class="scope"><summary>수록 범위</summary><p>미국의 법령과 제도만을 전제로 한 단원은 싣지 않았습니다. 장·절·그림·표의 번호는 원서를 따르므로 싣지 않은 단원의 번호는 비어 있습니다.</p></details>
+<p class="meta">B5 · 484쪽 · 85,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>비행 원리, 항공기 구조와 계통, 비행계기, 중량과 평형, 성능, 기상, 공역, 항법, 항공의학, 항공 의사결정 등 조종사에게 필요한 항공 지식 전반을 다룹니다.</p>
+<p><b>수록 범위</b> 미국의 법령과 제도만을 전제로 한 단원은 싣지 않았습니다. 장·절·그림·표의 번호는 원서를 따르므로 싣지 않은 단원의 번호는 비어 있습니다.</p>
+<p class="fine">ISBN 979-11-221118-1-1 · 2026.09.01 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=dhcIEgAAQBAJ" target="_blank" rel="noopener" aria-label="조종사를 위한 항공지식 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221152464" target="_blank" rel="noopener" aria-label="조종사를 위한 항공지식 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/195865126" target="_blank" rel="noopener" aria-label="조종사를 위한 항공지식 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401376404" target="_blank" rel="noopener" aria-label="조종사를 위한 항공지식 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -146,9 +152,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공기 비행 지침서</h3>
 <p class="orig" lang="en">Airplane Flying Handbook <span class="nw">(FAA-H-8083-3C)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">비행 전 점검과 지상 활주, 기본 비행 기동, 이착륙, 장주, 성능 기동, 야간 운항, 비상 절차 등 비행기 조종 기술을 다룹니다.</p>
-<p class="meta"><span>B5 · 468쪽 · 85,000원</span><span>ISBN 979-11-221118-2-8</span></p>
-<details class="scope"><summary>수록 범위</summary><p>원서의 열여덟 개 장을 모두 실었습니다. 국내에 대응 규정이 있는 미국 기준은 국내 기준으로 바꾸어 썼고, 바꿀 수 없는 곳에는 국내 조문을 함께 실었습니다.</p></details>
+<p class="meta">B5 · 468쪽 · 85,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>비행 전 점검과 지상 활주, 기본 비행 기동, 이착륙, 장주, 성능 기동, 야간 운항, 비상 절차 등 비행기 조종 기술을 다룹니다.</p>
+<p><b>수록 범위</b> 원서의 열여덟 개 장을 모두 실었습니다. 국내에 대응 규정이 있는 미국 기준은 국내 기준으로 바꾸어 썼고, 바꿀 수 없는 곳에는 국내 조문을 함께 실었습니다.</p>
+<p class="fine">ISBN 979-11-221118-2-8 · 2026.09.01 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=vBcIEgAAQBAJ" target="_blank" rel="noopener" aria-label="항공기 비행 지침서 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221337277" target="_blank" rel="noopener" aria-label="항공기 비행 지침서 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/195865125" target="_blank" rel="noopener" aria-label="항공기 비행 지침서 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401377308" target="_blank" rel="noopener" aria-label="항공기 비행 지침서 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -159,9 +167,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공 기상 지침서</h3>
 <p class="orig" lang="en">Aviation Weather Handbook <span class="nw">(FAA-H-8083-28)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">대기압과 고도 측정, 바람, 기단과 전선, 구름, 대기 안정도 등 기상 원리와 난기류, 착빙, 뇌우 등 위험 기상을 다룹니다.</p>
-<p class="meta"><span>B5 · 252쪽 · 55,000원</span><span>ISBN 979-11-221118-3-5</span></p>
-<details class="scope"><summary>수록 범위</summary><p>대기물리와 위험 기상을 다룬 원서 제2부를 옮겼습니다. 미국의 기상 서비스 체계(제1부), 관측·예보 제품(제3부), 제2부의 극지방 기상과 우주 기상 장은 싣지 않았습니다.</p></details>
+<p class="meta">B5 · 252쪽 · 55,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>대기압과 고도 측정, 바람, 기단과 전선, 구름, 대기 안정도 등 기상 원리와 난기류, 착빙, 뇌우 등 위험 기상을 다룹니다.</p>
+<p><b>수록 범위</b> 대기물리와 위험 기상을 다룬 원서 제2부를 옮겼습니다. 미국의 기상 서비스 체계(제1부), 관측·예보 제품(제3부), 제2부의 극지방 기상과 우주 기상 장은 싣지 않았습니다.</p>
+<p class="fine">ISBN 979-11-221118-3-5 · 2026.09.01 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=_RgIEgAAQBAJ" target="_blank" rel="noopener" aria-label="항공 기상 지침서 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221337292" target="_blank" rel="noopener" aria-label="항공 기상 지침서 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/195865124" target="_blank" rel="noopener" aria-label="항공 기상 지침서 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401377727" target="_blank" rel="noopener" aria-label="항공 기상 지침서 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -172,9 +182,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>위험 관리 지침서</h3>
 <p class="orig" lang="en">Risk Management Handbook <span class="nw">(FAA-H-8083-2A)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮기고 엮음</p>
-<p class="sum">위험요인 식별, 위험 평가와 완화, 개인 최저기상조건, 위협 및 오류 관리, 비행 중 항공 의사결정을 다룹니다.</p>
-<p class="meta"><span>B5 · 270쪽 · 55,000원</span><span>ISBN 979-11-221118-9-7</span></p>
-<details class="scope"><summary>수록 범위</summary><p>제1부는 원서의 여덟 개 장을 모두 옮긴 것입니다. 제2부에는 비행 판단을 다루는 사례연구를 실었습니다. 원서의 서문과 서론, 부록 C·D, 용어집은 싣지 않았습니다.</p></details>
+<p class="meta">B5 · 270쪽 · 55,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>위험요인 식별, 위험 평가와 완화, 개인 최저기상조건, 위협 및 오류 관리, 비행 중 항공 의사결정을 다룹니다.</p>
+<p><b>수록 범위</b> 제1부는 원서의 여덟 개 장을 모두 옮긴 것입니다. 제2부에는 비행 판단을 다루는 사례연구를 실었습니다. 원서의 서문과 서론, 부록 C·D, 용어집은 싣지 않았습니다.</p>
+<p class="fine">ISBN 979-11-221118-9-7 · 2026.10.30 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=pmAlEgAAQBAJ" target="_blank" rel="noopener" aria-label="위험 관리 지침서 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221810252" target="_blank" rel="noopener" aria-label="위험 관리 지침서 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/199521636" target="_blank" rel="noopener" aria-label="위험 관리 지침서 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=405493397" target="_blank" rel="noopener" aria-label="위험 관리 지침서 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -187,8 +199,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공정비사 지침서—공통 정비</h3>
 <p class="orig" lang="en">Aviation Maintenance Technician Handbook—General <span class="nw">(FAA-H-8083-30B)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">안전과 지상 작업, 규정과 정비 기록, 항공기 도면, 중량 및 평형, 재료와 하드웨어, 부식 관리, 검사 기법, 공구와 측정 장치, 전기·전자 기초, 인적 요인 등을 다룹니다.</p>
-<p class="meta"><span>A4 · 642쪽 · 85,000원</span><span>ISBN 979-11-222485-2-4</span></p>
+<p class="meta">A4 · 642쪽 · 85,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>안전과 지상 작업, 규정과 정비 기록, 항공기 도면, 중량 및 평형, 재료와 하드웨어, 부식 관리, 검사 기법, 공구와 측정 장치, 전기·전자 기초, 인적 요인 등을 다룹니다.</p>
+<p class="fine">ISBN 979-11-222485-2-4 · 2026.11.15 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=kNEyEgAAQBAJ" target="_blank" rel="noopener" aria-label="항공정비사 지침서—공통 정비 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000222043564" target="_blank" rel="noopener" aria-label="항공정비사 지침서—공통 정비 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=407828734" target="_blank" rel="noopener" aria-label="항공정비사 지침서—공통 정비 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -199,8 +213,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공정비사 지침서—동체 계통</h3>
 <p class="orig" lang="en">Aviation Maintenance Technician Handbook—Airframe <span class="nw">(FAA-H-8083-31B)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">항공기 구조, 금속 구조 수리, 용접, 복합 재료, 도장 등 구조 정비와 전기계통, 유압·공압, 착륙 장치, 연료계통, 결빙 방호, 객실 환경 제어, 화재 방호 등 동체 계통을 다룹니다.</p>
-<p class="meta"><span>A4 · 994쪽 · 85,000원</span><span>ISBN 979-11-222485-3-1</span></p>
+<p class="meta">A4 · 994쪽 · 85,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>항공기 구조, 금속 구조 수리, 용접, 복합 재료, 도장 등 구조 정비와 전기계통, 유압·공압, 착륙 장치, 연료계통, 결빙 방호, 객실 환경 제어, 화재 방호 등 동체 계통을 다룹니다.</p>
+<p class="fine">ISBN 979-11-222485-3-1 · 2026.11.15 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=ptEyEgAAQBAJ" target="_blank" rel="noopener" aria-label="항공정비사 지침서—동체 계통 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000222043563" target="_blank" rel="noopener" aria-label="항공정비사 지침서—동체 계통 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=407827436" target="_blank" rel="noopener" aria-label="항공정비사 지침서—동체 계통 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -211,8 +227,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공정비사 지침서—추진 장치</h3>
 <p class="orig" lang="en">Aviation Maintenance Technician Handbook—Powerplant <span class="nw">(FAA-H-8083-32B)</span></p>
 <p class="credit">미국 연방항공청 지음 · 김재성 옮김</p>
-<p class="sum">왕복 엔진과 터빈 엔진의 원리와 구조, 연료 계량, 흡기와 배기, 점화, 시동, 윤활과 냉각계통, 프로펠러, 엔진 정비와 운용 등을 다룹니다.</p>
-<p class="meta"><span>A4 · 488쪽 · 85,000원</span><span>ISBN 979-11-222485-4-8</span></p>
+<p class="meta">A4 · 488쪽 · 85,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>왕복 엔진과 터빈 엔진의 원리와 구조, 연료 계량, 흡기와 배기, 점화, 시동, 윤활과 냉각계통, 프로펠러, 엔진 정비와 운용 등을 다룹니다.</p>
+<p class="fine">ISBN 979-11-222485-4-8 · 2026.11.15 출간</p></div></details>
 </div><div class="act">
 <a class="read" href="https://play.google.com/store/books/details?id=1tEyEgAAQBAJ" target="_blank" rel="noopener" aria-label="항공정비사 지침서—추진 장치 전자책 무료 열람, Google Play 북스, 새 창">전자책 무료 열람</a>
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000222043571" target="_blank" rel="noopener" aria-label="항공정비사 지침서—추진 장치 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=407828070" target="_blank" rel="noopener" aria-label="항공정비사 지침서—추진 장치 종이책, 알라딘, 새 창">알라딘</a></div></div>
@@ -225,8 +243,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>항공사고 이야기</h3>
 <p class="orig">항공 역사에 남은 스물네 편의 사건</p>
 <p class="credit">김재성 지음</p>
-<p class="sum">1937년 힌덴부르크 비행선 참사부터 말레이시아항공 MH370 실종까지, 항공 역사에 남은 사고와 사건을 공식 사고조사보고서와 관련 기록을 토대로 다룹니다.</p>
-<p class="meta"><span>A5 · 486쪽 · 23,000원</span><span>ISBN 979-11-221118-4-2</span></p>
+<p class="meta">A5 · 486쪽 · 23,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>1937년 힌덴부르크 비행선 참사부터 말레이시아항공 MH370 실종까지, 항공 역사에 남은 사고와 사건을 공식 사고조사보고서와 관련 기록을 토대로 다룹니다.</p>
+<p class="fine">ISBN 979-11-221118-4-2 · 2026.10.12 출간</p></div></details>
 </div><div class="act">
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221636260" target="_blank" rel="noopener" aria-label="항공사고 이야기 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/198010134" target="_blank" rel="noopener" aria-label="항공사고 이야기 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=404229996" target="_blank" rel="noopener" aria-label="항공사고 이야기 종이책, 알라딘, 새 창">알라딘</a></div></div>
 </div></article>
@@ -236,8 +256,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-off
 <h3>스틱 앤 러더</h3>
 <p class="orig">비행 기술의 해설 · Stick and Rudder</p>
 <p class="credit">볼프강 랑게비셰 지음 · 조 코툴라 그림 · 김재성 옮김</p>
-<p class="sum">1944년에 출간된 비행술의 고전입니다. 받음각과 양력, 실속, 조종장치의 역할, 선회와 활공, 착륙 접근과 착륙까지 비행기가 움직이는 원리를 설명합니다.</p>
-<p class="meta"><span>A5 · 416쪽 · 23,000원</span><span>ISBN 979-11-221118-0-4</span></p>
+<p class="meta">A5 · 416쪽 · 23,000원</p>
+<details class="info"><summary>도서 정보</summary><div class="info-b">
+<p>1944년에 출간된 비행술의 고전입니다. 받음각과 양력, 실속, 조종장치의 역할, 선회와 활공, 착륙 접근과 착륙까지 비행기가 움직이는 원리를 설명합니다.</p>
+<p class="fine">ISBN 979-11-221118-0-4 · 2026.10.15 출간</p></div></details>
 </div><div class="act">
 <div class="buy"><span class="buy-l">종이책</span><div class="buy-s"><a href="https://product.kyobobook.co.kr/detail/S000221643555" target="_blank" rel="noopener" aria-label="스틱 앤 러더 종이책, 교보문고, 새 창">교보문고</a><a href="https://www.yes24.com/product/goods/198057139" target="_blank" rel="noopener" aria-label="스틱 앤 러더 종이책, 예스24, 새 창">예스24</a><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=404305146" target="_blank" rel="noopener" aria-label="스틱 앤 러더 종이책, 알라딘, 새 창">알라딘</a></div></div>
 </div></article>
